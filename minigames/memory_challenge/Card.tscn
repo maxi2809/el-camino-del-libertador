@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://oqikums2f8w5"]
+
+[ext_resource type="Script" path="res://minigames/memory_challenge/Card.gd" id="1_hael8"]
+
+[sub_resource type="StyleBoxFlat" id="SBF_normal"]
+bg_color = Color(0.0666667, 0.0980392, 0.192157, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.85098, 0.643137, 0.254902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="SBF_hover"]
+bg_color = Color(0.109804, 0.160784, 0.301961, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.984314, 0.811765, 0.415686, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Card" type="Button"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_styles/normal = SubResource("SBF_normal")
+theme_override_styles/hover = SubResource("SBF_hover")
+theme_override_styles/pressed = SubResource("SBF_hover")
+theme_override_styles/focus = SubResource("SBF_normal")
+script = ExtResource("1_hael8")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = -8.0
+offset_top = 8.0
+offset_bottom = -8.0
+expand_mode = 1
+stretch_mode = 5

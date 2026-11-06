@@ -1,0 +1,142 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Level2Manager.gd" id="1_l2"]
+[ext_resource type="VideoStream" path="res://assets/video/logro_obtenido.ogv" id="2_logro"]
+
+[node name="Level2_Consejo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_l2")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.0666667, 0.0980392, 0.192157, 1)
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 16.0
+offset_bottom = 52.0
+theme_override_constants/separation = 20
+
+[node name="ProgressLabel" type="Label" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Pregunta 1 / 6"
+
+[node name="ScoreLabel" type="Label" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.984314, 0.811765, 0.415686, 1)
+theme_override_font_sizes/font_size = 24
+text = "Puntaje: 0"
+horizontal_alignment = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 60.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(0.984314, 0.811765, 0.415686, 1)
+theme_override_font_sizes/font_size = 32
+text = "CONSEJO DEL SABER"
+horizontal_alignment = 1
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_top = 0.22
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="QuestionLabel" type="Label" parent="Center/VBoxContainer"]
+custom_minimum_size = Vector2(920, 96)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="OptionsBox" type="VBoxContainer" parent="Center/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="FeedbackLabel" type="Label" parent="Center/VBoxContainer"]
+custom_minimum_size = Vector2(920, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="NextButton" type="Button" parent="Center/VBoxContainer"]
+custom_minimum_size = Vector2(260, 52)
+layout_mode = 2
+size_flags_horizontal = 4
+visible = false
+text = "Siguiente pregunta"
+
+[node name="EndLayer" type="CanvasLayer" parent="."]
+visible = false
+layer = 10
+
+[node name="Dim" type="ColorRect" parent="EndLayer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.7)
+
+[node name="Center" type="CenterContainer" parent="EndLayer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="EndLayer/Center"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndLayer/Center/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="EndLayer/Center/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.984314, 0.811765, 0.415686, 1)
+theme_override_font_sizes/font_size = 36
+text = "¡DESAFÍO COMPLETADO!"
+horizontal_alignment = 1
+
+[node name="LogroVideo" type="VideoStreamPlayer" parent="EndLayer/Center/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(400, 240)
+layout_mode = 2
+size_flags_horizontal = 4
+expand = true
+stream = ExtResource("2_logro")
+
+[node name="ScoreLabel" type="Label" parent="EndLayer/Center/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Puntaje final: 0"
+horizontal_alignment = 1
+
+[node name="EndBtn" type="Button" parent="EndLayer/Center/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(260, 52)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Recibir mi ascenso"

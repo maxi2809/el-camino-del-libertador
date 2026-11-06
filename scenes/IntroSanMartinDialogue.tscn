@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://bjyc2pu784vp2"]
+
+[ext_resource type="Script" uid="uid://y5rk4tlvbouu" path="res://IntroSanMartinDialogue.gd" id="1_52osm"]
+[ext_resource type="Texture2D" path="res://assets/gdd/general.png" id="2_general"]
+[ext_resource type="Texture2D" path="res://assets/gdd/hero_rider.png" id="3_player"]
+
+[sub_resource type="StyleBoxFlat" id="SBF_dialog"]
+bg_color = Color(0.0431373, 0.0627451, 0.121569, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.643137, 0.254902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+content_margin_left = 22.0
+content_margin_top = 16.0
+content_margin_right = 22.0
+content_margin_bottom = 16.0
+
+[node name="IntroSanMartinDialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_52osm")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.0666667, 0.0980392, 0.192157, 1)
+
+[node name="StageLight" type="ColorRect" parent="."]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_top = 0.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_right = -40.0
+mouse_filter = 2
+color = Color(0.113725, 0.172549, 0.329412, 1)
+
+[node name="StageLightPlayer" type="ColorRect" parent="."]
+layout_mode = 1
+anchor_top = 0.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_right = 360.0
+mouse_filter = 2
+color = Color(0.113725, 0.172549, 0.329412, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 34.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(0.85098, 0.643137, 0.254902, 1)
+theme_override_font_sizes/font_size = 28
+text = "Campamento del Plumerillo, 1814"
+horizontal_alignment = 1
+
+[node name="PortraitGeneral" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_top = 0.0
+anchor_bottom = 1.0
+offset_left = -330.0
+offset_top = 84.0
+offset_right = -40.0
+offset_bottom = -20.0
+grow_horizontal = 0
+expand_mode = 1
+stretch_mode = 5
+texture = ExtResource("2_general")
+
+[node name="PlayerPortrait" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_top = 0.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 84.0
+offset_right = 340.0
+offset_bottom = -20.0
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+texture = ExtResource("3_player")
+
+[node name="DialogueBox" type="PanelContainer" parent="."]
+layout_mode = 1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -240.0
+offset_right = -390.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("SBF_dialog")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogueBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SpeakerName" type="Label" parent="DialogueBox/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.643137, 0.254902, 1)
+theme_override_font_sizes/font_size = 20
+text = "General José de San Martín"
+
+[node name="DialogueText" type="Label" parent="DialogueBox/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.94902, 0.92549, 0.858824, 1)
+autowrap_mode = 3
+text = "..."
+
+[node name="ContinueButton" type="Button" parent="DialogueBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Continuar"

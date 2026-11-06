@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://bmm4tvbbtupk2"]
+
+[ext_resource type="Script" path="res://minigames/memory_challenge/main.gd" id="1_glv2v"]
+
+[sub_resource type="StyleBoxFlat" id="SBF_topbar"]
+bg_color = Color(0.0431373, 0.0627451, 0.121569, 1)
+border_width_bottom = 3
+border_color = Color(0.85098, 0.643137, 0.254902, 1)
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_glv2v")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.0666667, 0.0980392, 0.192157, 1)
+
+[node name="TopBar" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("SBF_topbar")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_right = -24.0
+theme_override_constants/separation = 40
+
+[node name="ScoreLabel" type="Label" parent="TopBar/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.984314, 0.811765, 0.415686, 1)
+theme_override_colors/font_outline_color = Color(0.0431373, 0.0627451, 0.121569, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 30
+text = "Puntos: 0"
+vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="TopBar/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94902, 0.92549, 0.858824, 1)
+theme_override_colors/font_outline_color = Color(0.0431373, 0.0627451, 0.121569, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 30
+text = "Tiempo: 60"
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="TopBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LevelLabel" type="Label" parent="TopBar/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.643137, 0.254902, 1)
+theme_override_font_sizes/font_size = 20
+text = "Resolviendo retos: memoria histórica"
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 72.0
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+layout_mode = 2
+columns = 4
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,67 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/LevelCompleteScreen.gd" id="1_levcomp"]
+[ext_resource type="Texture2D" path="res://assets/gdd/cards/medalla.png" id="2_medal"]
+
+[node name="LevelCompleteScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_levcomp")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.0666667, 0.0980392, 0.192157, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CongratsLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.643137, 0.254902, 1)
+theme_override_font_sizes/font_size = 32
+text = "¡Ascenso obtenido por servicio distinguido!"
+horizontal_alignment = 1
+
+[node name="RankLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94902, 0.92549, 0.858824, 1)
+theme_override_font_sizes/font_size = 26
+text = "Recluta"
+horizontal_alignment = 1
+
+[node name="PortraitRow" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 34
+alignment = 1
+
+[node name="RankPortrait" type="TextureRect" parent="CenterContainer/VBoxContainer/PortraitRow"]
+custom_minimum_size = Vector2(300, 392)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Medal" type="TextureRect" parent="CenterContainer/VBoxContainer/PortraitRow"]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+texture = ExtResource("2_medal")
+
+[node name="NextButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(280, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Ir a la siguiente misión"

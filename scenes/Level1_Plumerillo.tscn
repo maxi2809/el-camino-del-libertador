@@ -1,0 +1,310 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://Level1Manager.gd" id="1_mgr"]
+[ext_resource type="Script" path="res://PlayerToken.gd" id="2_tok"]
+[ext_resource type="Texture2D" path="res://assets/gdd/avatar_skin_0.png" id="3_skin"]
+[ext_resource type="VideoStream" path="res://assets/video/logro_obtenido.ogv" id="4_logro"]
+[ext_resource type="Texture2D" path="res://assets/gdd/collect_poncho.png" id="5_icoponcho"]
+[ext_resource type="Texture2D" path="res://assets/gdd/collect_polvora.png" id="6_icopolvora"]
+[ext_resource type="Texture2D" path="res://assets/gdd/collect_charqui.png" id="7_icocharqui"]
+
+[sub_resource type="StyleBoxFlat" id="SB_badge"]
+content_margin_left = 14.0
+content_margin_top = 8.0
+content_margin_right = 14.0
+content_margin_bottom = 8.0
+bg_color = Color(0.086, 0.125, 0.235, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.851, 0.643, 0.255, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="SB_panel"]
+content_margin_left = 34.0
+content_margin_top = 26.0
+content_margin_right = 34.0
+content_margin_bottom = 26.0
+bg_color = Color(0.078, 0.11, 0.204, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.851, 0.643, 0.255, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="SB_btn"]
+content_margin_left = 26.0
+content_margin_top = 10.0
+content_margin_right = 26.0
+content_margin_bottom = 10.0
+bg_color = Color(0.851, 0.643, 0.255, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="SB_btn_pressed"]
+content_margin_left = 26.0
+content_margin_top = 10.0
+content_margin_right = 26.0
+content_margin_bottom = 10.0
+bg_color = Color(0.72, 0.52, 0.18, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="RectangleShape2D" id="CatchRect"]
+size = Vector2(230, 240)
+
+[node name="Level1_Plumerillo" type="Node2D"]
+script = ExtResource("1_mgr")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0.0666667, 0.0980392, 0.192157, 1)
+
+[node name="Mountains" type="Polygon2D" parent="."]
+color = Color(0.13, 0.19, 0.35, 1)
+polygon = PackedVector2Array(0, 500, 0, 480, 140, 380, 280, 480, 430, 350, 600, 480, 760, 370, 920, 480, 1080, 390, 1280, 480, 1280, 500)
+
+[node name="CampGround" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_top = 480.0
+offset_bottom = 700.0
+mouse_filter = 2
+color = Color(0.1, 0.14, 0.26, 1)
+
+[node name="GroundLine" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_top = 476.0
+offset_bottom = 482.0
+mouse_filter = 2
+color = Color(0.851, 0.643, 0.255, 0.85)
+
+[node name="Collectibles" type="Node2D" parent="."]
+
+[node name="PlayerToken" type="Node2D" parent="."]
+position = Vector2(640, 545)
+scale = Vector2(0.55, 0.55)
+script = ExtResource("2_tok")
+
+[node name="Body" type="Sprite2D" parent="PlayerToken"]
+texture = ExtResource("3_skin")
+
+[node name="CatchArea" type="Area2D" parent="PlayerToken" groups=["player_catch"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerToken/CatchArea"]
+position = Vector2(0, 20)
+shape = SubResource("CatchRect")
+
+[node name="HudLayer" type="CanvasLayer" parent="."]
+
+[node name="TopBar" type="HBoxContainer" parent="HudLayer"]
+offset_left = 20.0
+offset_top = 14.0
+offset_right = 1000.0
+offset_bottom = 130.0
+theme_override_constants/separation = 14
+
+[node name="BadgePoncho" type="PanelContainer" parent="HudLayer/TopBar"]
+theme_override_styles/panel = SubResource("SB_badge")
+
+[node name="VBox" type="VBoxContainer" parent="HudLayer/TopBar/BadgePoncho"]
+
+[node name="IconRow" type="HBoxContainer" parent="HudLayer/TopBar/BadgePoncho/VBox"]
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="HudLayer/TopBar/BadgePoncho/VBox/IconRow"]
+custom_minimum_size = Vector2(40, 40)
+expand_mode = 1
+stretch_mode = 5
+texture = ExtResource("5_icoponcho")
+
+[node name="ItemName" type="Label" parent="HudLayer/TopBar/BadgePoncho/VBox/IconRow"]
+theme_override_colors/font_color = Color(0.949, 0.91, 0.839, 1)
+theme_override_font_sizes/font_size = 20
+text = "Poncho"
+
+[node name="Count" type="Label" parent="HudLayer/TopBar/BadgePoncho/VBox"]
+theme_override_colors/font_color = Color(0.851, 0.643, 0.255, 1)
+theme_override_font_sizes/font_size = 30
+text = "0 / 5"
+horizontal_alignment = 1
+
+[node name="BadgePolvora" type="PanelContainer" parent="HudLayer/TopBar"]
+theme_override_styles/panel = SubResource("SB_badge")
+
+[node name="VBox" type="VBoxContainer" parent="HudLayer/TopBar/BadgePolvora"]
+
+[node name="IconRow" type="HBoxContainer" parent="HudLayer/TopBar/BadgePolvora/VBox"]
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="HudLayer/TopBar/BadgePolvora/VBox/IconRow"]
+custom_minimum_size = Vector2(40, 40)
+expand_mode = 1
+stretch_mode = 5
+texture = ExtResource("6_icopolvora")
+
+[node name="ItemName" type="Label" parent="HudLayer/TopBar/BadgePolvora/VBox/IconRow"]
+theme_override_colors/font_color = Color(0.949, 0.91, 0.839, 1)
+theme_override_font_sizes/font_size = 20
+text = "Pólvora"
+
+[node name="Count" type="Label" parent="HudLayer/TopBar/BadgePolvora/VBox"]
+theme_override_colors/font_color = Color(0.851, 0.643, 0.255, 1)
+theme_override_font_sizes/font_size = 30
+text = "0 / 5"
+horizontal_alignment = 1
+
+[node name="BadgeCharqui" type="PanelContainer" parent="HudLayer/TopBar"]
+theme_override_styles/panel = SubResource("SB_badge")
+
+[node name="VBox" type="VBoxContainer" parent="HudLayer/TopBar/BadgeCharqui"]
+
+[node name="IconRow" type="HBoxContainer" parent="HudLayer/TopBar/BadgeCharqui/VBox"]
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="HudLayer/TopBar/BadgeCharqui/VBox/IconRow"]
+custom_minimum_size = Vector2(40, 40)
+expand_mode = 1
+stretch_mode = 5
+texture = ExtResource("7_icocharqui")
+
+[node name="ItemName" type="Label" parent="HudLayer/TopBar/BadgeCharqui/VBox/IconRow"]
+theme_override_colors/font_color = Color(0.949, 0.91, 0.839, 1)
+theme_override_font_sizes/font_size = 20
+text = "Charqui"
+
+[node name="Count" type="Label" parent="HudLayer/TopBar/BadgeCharqui/VBox"]
+theme_override_colors/font_color = Color(0.851, 0.643, 0.255, 1)
+theme_override_font_sizes/font_size = 30
+text = "0 / 5"
+horizontal_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="HudLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -400.0
+offset_top = 16.0
+offset_right = -24.0
+offset_bottom = 72.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.851, 0.643, 0.255, 1)
+theme_override_font_sizes/font_size = 34
+text = "Tiempo: 90 s"
+horizontal_alignment = 2
+
+[node name="InstructionLabel" type="Label" parent="HudLayer"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -150.0
+offset_bottom = -106.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.949, 0.91, 0.839, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 26
+text = "Consigna: movete con ← → y atrapá 5 de cada suministro antes de que acabe el tiempo"
+horizontal_alignment = 1
+
+[node name="WinLayer" type="CanvasLayer" parent="."]
+visible = false
+layer = 10
+
+[node name="Dim" type="ColorRect" parent="WinLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.66)
+
+[node name="Center" type="CenterContainer" parent="WinLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="WinLayer/Center"]
+theme_override_styles/panel = SubResource("SB_panel")
+
+[node name="VBox" type="VBoxContainer" parent="WinLayer/Center/Panel"]
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="WinLayer/Center/Panel/VBox"]
+theme_override_colors/font_color = Color(0.851, 0.643, 0.255, 1)
+theme_override_font_sizes/font_size = 40
+text = "¡RETO CONSEGUIDO!"
+horizontal_alignment = 1
+
+[node name="LogroVideo" type="VideoStreamPlayer" parent="WinLayer/Center/Panel/VBox"]
+custom_minimum_size = Vector2(320, 200)
+size_flags_horizontal = 4
+expand = true
+stream = ExtResource("4_logro")
+
+[node name="Msg" type="Label" parent="WinLayer/Center/Panel/VBox"]
+theme_override_colors/font_color = Color(0.949, 0.91, 0.839, 1)
+theme_override_font_sizes/font_size = 24
+text = "Entregaste todos los suministros al Ejército de los Andes."
+horizontal_alignment = 1
+
+[node name="BtnContinue" type="Button" parent="WinLayer/Center/Panel/VBox"]
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.07, 0.098, 0.19, 1)
+theme_override_colors/font_hover_color = Color(0.07, 0.098, 0.19, 1)
+theme_override_colors/font_pressed_color = Color(0.07, 0.098, 0.19, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("SB_btn")
+theme_override_styles/hover = SubResource("SB_btn")
+theme_override_styles/pressed = SubResource("SB_btn_pressed")
+text = "Continuar"
+
+[node name="FailLayer" type="CanvasLayer" parent="."]
+visible = false
+layer = 10
+
+[node name="Dim" type="ColorRect" parent="FailLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.66)
+
+[node name="Center" type="CenterContainer" parent="FailLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="FailLayer/Center"]
+theme_override_styles/panel = SubResource("SB_panel")
+
+[node name="VBox" type="VBoxContainer" parent="FailLayer/Center/Panel"]
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="FailLayer/Center/Panel/VBox"]
+theme_override_colors/font_color = Color(0.851, 0.643, 0.255, 1)
+theme_override_font_sizes/font_size = 40
+text = "¡CASI LO LOGRAS!"
+horizontal_alignment = 1
+
+[node name="Msg" type="Label" parent="FailLayer/Center/Panel/VBox"]
+theme_override_colors/font_color = Color(0.949, 0.91, 0.839, 1)
+theme_override_font_sizes/font_size = 24
+text = "El granadero no se rinde: cada intento nos acerca más a los Andes. ¡Jugá otra vez y cumplí la consigna!"
+horizontal_alignment = 1
+
+[node name="BtnRetry" type="Button" parent="FailLayer/Center/Panel/VBox"]
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.07, 0.098, 0.19, 1)
+theme_override_colors/font_hover_color = Color(0.07, 0.098, 0.19, 1)
+theme_override_colors/font_pressed_color = Color(0.07, 0.098, 0.19, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("SB_btn")
+theme_override_styles/hover = SubResource("SB_btn")
+theme_override_styles/pressed = SubResource("SB_btn_pressed")
+text = "Jugar nuevamente"
