@@ -28,6 +28,12 @@ Creá tu granadero (5 uniformes disponibles), viví el diálogo con el General
 San Martín y demostrá tu valor logístico, histórico y de memoria a lo largo
 de la campaña.
 
+## 🎬 Demo en video
+
+![Gameplay de la demo](screenshots/demo1.mp4)
+
+<sub>¿No carga el reproductor? [Ver el video directo acá](https://github.com/maxi2809/el-camino-del-libertador/raw/main/screenshots/demo1.mp4)</sub>
+
 ## 🕹️ Contenido de la demo
 
 | Misión | Desafío | Recompensa |

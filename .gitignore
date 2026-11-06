@@ -5,3 +5,6 @@
 # Ejecutables exportados (se comparten por GitHub Releases, no en el repo)
 *.exe
 *.pck
+
+# Grabaciones de gameplay sin comprimir (al repo solo va la versión comprimida)
+/demo1.mp4
